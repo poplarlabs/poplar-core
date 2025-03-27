@@ -1,0 +1,36 @@
+FROM ubuntu:22.04
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -s /bin/bash foundry
+USER foundry
+WORKDIR /home/foundry
+
+# Install Foundry
+RUN curl -L https://foundry.paradigm.xyz | bash && \
+    /home/foundry/.foundry/bin/foundryup
+
+# Add foundry binaries to PATH
+ENV PATH="/home/foundry/.foundry/bin:${PATH}"
+
+# Create app directory and set permissions
+USER root
+RUN mkdir /app && chown foundry:foundry /app
+USER foundry
+WORKDIR /app
+
+# Copy Foundry configuration and contracts
+COPY --chown=foundry:foundry . .
+
+# Expose the default Anvil port
+EXPOSE 8545
+
+# Start Anvil with the startup script
+CMD ["./anvil-startup.sh"]

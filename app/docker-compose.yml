@@ -1,0 +1,48 @@
+services:
+  anvil:
+    build:
+      context: ./contracts
+      dockerfile: ../docker/Dockerfile.anvil
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./contracts:/app
+      - ./docker/anvil-startup.sh:/app/anvil-startup.sh
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -X POST -H 'Content-Type: application/json' --data '{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}' http://localhost:8545 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - NETWORK=local
+    depends_on:
+      anvil:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_NETWORK=local
+      - WDS_SOCKET_PORT=0
+    depends_on:
+      - anvil
+      - backend
+
+volumes:
+  backend_cache:

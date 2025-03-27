@@ -10,7 +10,15 @@ export default function Home() {
       <nav className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-[#6B8E23]" />
+            <Image
+              src="/images/logo-transparent.png"
+              alt="Poplar Labs Logo"
+              width={32}
+              height={32}
+              className="h-8 w-8"
+              style={{ objectFit: 'contain' }}
+              quality={100}
+            />
             <span className="text-2xl font-bold text-[#556B2F]">Poplar Labs</span>
           </div>
           <div className="hidden md:flex space-x-8">
@@ -112,7 +120,15 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-6">
-                <Leaf className="h-6 w-6" />
+                <Image
+                  src="/images/logo-transparent.png"
+                  alt="Poplar Labs Logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                  style={{ objectFit: 'contain' }}
+                  quality={100}
+                />
                 <span className="text-xl font-bold">Poplar Labs</span>
               </div>
               <p className="text-[#F7F7F2] opacity-80">

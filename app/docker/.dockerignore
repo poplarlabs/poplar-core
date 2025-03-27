@@ -1,0 +1,12 @@
+**/node_modules
+**/__pycache__
+**/*.pyc
+**/.env
+**/venv
+**/.git
+**/cache
+**/out
+**/broadcast
+**/.DS_Store
+**/dist
+**/build
