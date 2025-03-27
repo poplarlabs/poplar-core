@@ -26,9 +26,9 @@ export default function Home() {
             <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Technology</a>
             <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Governance</a>
           </div>
-          <button className="bg-[#6B8E23] text-white px-6 py-2 rounded-full hover:bg-[#556B2F] transition-colors">
+          <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-6 py-2 rounded-full hover:bg-[#556B2F] transition-colors">
             Open App
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -166,4 +166,4 @@ export default function Home() {
       </footer>
     </div>
   );
-} 
+}
