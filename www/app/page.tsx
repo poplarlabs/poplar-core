@@ -43,9 +43,9 @@ export default function Home() {
               Build decentralized villages on secure land registries, create community-owned economies, and enable community lending for home ownership.
             </p>
             <div className="flex space-x-4">
-              <button className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
-                See What&apos;s Happening<ArrowRight className="ml-2 h-5 w-5" />
-              </button>
+              <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
+                Explore the Protocol<ArrowRight className="ml-2 h-5 w-5" />
+              </a>
               <Link href="/whitepaper" className="border-2 border-[#6B8E23] text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#6B8E23] hover:text-white transition-colors">
                 Read Whitepaper
               </Link>
@@ -105,14 +105,19 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <Sprout className="h-12 w-12 text-white mx-auto mb-6" />
             <h2 className="text-3xl font-bold text-white mb-6">
-              Join the Property Record Revolution
+              Ready to Contribute?
             </h2>
             <p className="text-[#F7F7F2] mb-8">
-              Be part of a community building transparent, secure property registries that enable land-based villages with locally-owned economies.
+              Explore the Poplar Protocol app to see how you can contribute to building transparent, secure property registries for community-owned network villages.
             </p>
-            <button className="bg-white text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#F7F7F2] transition-colors">
-              Start Your Journey
-            </button>
+            <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-white text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#F7F7F2] transition-colors inline-flex items-center">
+              Explore the Protocol <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <div className="mt-4">
+              <Link href="/whitepaper" className="text-[#F7F7F2] hover:text-white underline">
+                Or, learn more by reading the Whitepaper
+              </Link>
+            </div>
           </div>
         </div>
       </section>
