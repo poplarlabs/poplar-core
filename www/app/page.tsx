@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Leaf, Users, Wallet, Building, Sprout, ArrowRight, Map, Store, Handshake } from 'lucide-react';
 import RoadmapSection from './components/RoadmapSection';
-
+import Link from 'next/link';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F7F7F2] to-white">
@@ -23,9 +23,7 @@ export default function Home() {
             <span className="text-2xl font-bold text-[#556B2F]">Poplar Labs</span>
           </div>
           <div className="hidden md:flex space-x-8">
-            <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Communities</a>
-            <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Technology</a>
-            <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Governance</a>
+            <Link href="/whitepaper" className="text-[#6B8E23] hover:text-[#556B2F]">Whitepaper</Link>
             <a href="#roadmap" className="text-[#6B8E23] hover:text-[#556B2F]">Roadmap</a>
           </div>
           <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-6 py-2 rounded-full hover:bg-[#556B2F] transition-colors">
@@ -48,9 +46,9 @@ export default function Home() {
               <button className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
                 See What&apos;s Happening<ArrowRight className="ml-2 h-5 w-5" />
               </button>
-              <button className="border-2 border-[#6B8E23] text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#6B8E23] hover:text-white transition-colors">
+              <Link href="/whitepaper" className="border-2 border-[#6B8E23] text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#6B8E23] hover:text-white transition-colors">
                 Read Whitepaper
-              </button>
+              </Link>
             </div>
           </div>
           <div className="relative aspect-[4/3] w-full">
@@ -143,24 +141,24 @@ export default function Home() {
             <div>
               <h3 className="font-semibold mb-4">Platform</h3>
               <ul className="space-y-2 text-[#F7F7F2] opacity-80">
-                <li><a href="#" className="hover:opacity-100">Communities</a></li>
-                <li><a href="#" className="hover:opacity-100">Governance</a></li>
-                <li><a href="#" className="hover:opacity-100">Token</a></li>
+                <li><a href="#" className="hover:opacity-100">Communities (Coming Soon)</a></li>
+                <li><a href="#" className="hover:opacity-100">Governance (Coming Soon)</a></li>
+                <li><a href="#" className="hover:opacity-100">Token (Coming Soon)</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-[#F7F7F2] opacity-80">
-                <li><a href="#" className="hover:opacity-100">Documentation</a></li>
-                <li><a href="#" className="hover:opacity-100">Whitepaper</a></li>
-                <li><a href="#" className="hover:opacity-100">GitHub</a></li>
+                <li><a href="#" className="hover:opacity-100">Documentation (Coming Soon)</a></li>
+                <li><Link href="/whitepaper" className="hover:opacity-100">Whitepaper</Link></li>
+                <li><a href="#" className="hover:opacity-100">GitHub (Coming Soon)</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
               <ul className="space-y-2 text-[#F7F7F2] opacity-80">
-                <li><a href="https://app.towns.com/poplar-labs" className="hover:opacity-100">Towns Chat</a></li>
-                <li><a href="https://x.com/poplarlabsxyz" className="hover:opacity-100">Twitter</a></li>
+                <li><a href="https://app.towns.com/poplar-labs" target="_blank" rel="noopener noreferrer" className="hover:opacity-100">Towns Chat</a></li>
+                <li><a href="https://x.com/poplarlabsxyz" target="_blank" rel="noopener noreferrer" className="hover:opacity-100">Twitter</a></li>
               </ul>
             </div>
           </div>
