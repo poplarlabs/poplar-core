@@ -22,6 +22,15 @@ contract DeployScript is Script {
         Poplar poplar = new Poplar(address(token));
         console.log("Poplar contract deployed at:", address(poplar));
 
+        // Set the valid countries, regions, and localities
+        poplar.addCountry("US");
+        poplar.addRegion("US", "Alabama");
+        poplar.addLocality("US", "Alabama", "Baldwin County");
+        poplar.addRegion("US", "Wyoming");
+        poplar.addLocality("US", "Wyoming", "Big Horn County");
+        poplar.addRegion("US", "Missouri");
+        poplar.addLocality("US", "Missouri", "Jackson County");
+
         // Transfer 100 ROOT tokens to test account
         token.transfer(TEST_ACCOUNT, 1_000_000 * 10**18);
         console.log("Transferred 1000000 ROOT to:", TEST_ACCOUNT);

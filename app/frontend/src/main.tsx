@@ -7,6 +7,7 @@ import App from './App'
 import './index.css'
 import '@rainbow-me/rainbowkit/styles.css'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { BrowserRouter } from 'react-router-dom'
 
 const queryClient = new QueryClient()
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

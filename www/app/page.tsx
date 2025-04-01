@@ -37,10 +37,10 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl font-bold text-[#556B2F] leading-tight mb-6">
-              Founding Network Towns with Local Economies
+              Community-Owned Network Villages
             </h1>
             <p className="text-lg text-[#6B8E23] mb-8">
-              Found your own town, join a town, and trade with other towns.
+              Found your own village, join a village, and trade with other villages.
             </p>
             <div className="flex space-x-4">
               <button className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
@@ -69,7 +69,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="bg-white py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-[#556B2F] mb-16">Network Towns</h2>
+          <h2 className="text-3xl font-bold text-center text-[#556B2F] mb-16">Network Villages</h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center">
               <div className="bg-[#F7F7F2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -90,7 +90,7 @@ export default function Home() {
                 <Building className="h-8 w-8 text-[#6B8E23]" />
               </div>
               <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Digital Infrastructure</h3>
-              <p className="text-[#6B8E23]">Web3 tools and platforms for managing decentralized town resources and services.</p>
+              <p className="text-[#6B8E23]">Web3 tools and platforms for managing decentralized village resources and services.</p>
             </div>
           </div>
         </div>
@@ -102,13 +102,13 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <Sprout className="h-12 w-12 text-white mx-auto mb-6" />
             <h2 className="text-3xl font-bold text-white mb-6">
-              Build A Network Town
+              Build A Network Village
             </h2>
             <p className="text-[#F7F7F2] mb-8">
               Join the movement to create self-sustaining digital communities that own their economy.
             </p>
             <button className="bg-white text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#F7F7F2] transition-colors">
-              Start a Town
+              Start a Village
             </button>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function Home() {
                 <span className="text-xl font-bold">Poplar Labs</span>
               </div>
               <p className="text-[#F7F7F2] opacity-80">
-                Founding Network Towns with Local Economies
+                Community-Owned Network Villages
               </p>
             </div>
             <div>

@@ -1599,8 +1599,7 @@ export const counties: CountiesMap = {
     "Sheridan County",
     "Sherman County",
     "Sioux County",
-    "Stanton County"
-  ,
+    "Stanton County",
     "Thayer County",
     "Thomas County",
     "Thurston County",
@@ -3018,13 +3017,13 @@ export const counties: CountiesMap = {
 };
 
 export const activeCounties: CountiesMap = {
-  AL: [
+  Alabama: [
     "Baldwin County",
   ],
-  MO: [
+  Missouri: [
     "Jackson County",
   ],
-  WY: [
+  Wyoming: [
     "Big Horn County",
   ]
 };
