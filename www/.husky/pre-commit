@@ -1,0 +1,15 @@
+echo "Running linter..."
+
+# Change to the www directory before running lint
+cd "$(dirname "$0")/../.."/www
+
+yarn lint
+
+# Check the exit code of the linter
+if [ $? -ne 0 ]; then
+  echo "Linting failed. Commit aborted."
+  exit 1
+fi
+
+echo "Linting passed."
+exit 0
