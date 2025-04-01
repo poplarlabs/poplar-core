@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { Leaf, Users, Wallet, Building, Sprout, ArrowRight } from 'lucide-react';
+import { Leaf, Users, Wallet, Building, Sprout, ArrowRight, Map, Store, Handshake } from 'lucide-react';
+import RoadmapSection from './components/RoadmapSection';
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
             <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Communities</a>
             <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Technology</a>
             <a href="#" className="text-[#6B8E23] hover:text-[#556B2F]">Governance</a>
+            <a href="#roadmap" className="text-[#6B8E23] hover:text-[#556B2F]">Roadmap</a>
           </div>
           <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-6 py-2 rounded-full hover:bg-[#556B2F] transition-colors">
             Open App
@@ -40,7 +42,7 @@ export default function Home() {
               Community-Owned Network Villages
             </h1>
             <p className="text-lg text-[#6B8E23] mb-8">
-              Found your own village, join a village, and trade with other villages.
+              Build decentralized villages on secure land registries, create community-owned economies, and enable community lending for home ownership.
             </p>
             <div className="flex space-x-4">
               <button className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
@@ -73,28 +75,31 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center">
               <div className="bg-[#F7F7F2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-[#6B8E23]" />
+                <Map className="h-8 w-8 text-[#6B8E23]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Community DAOs</h3>
-              <p className="text-[#6B8E23]">Decentralized governance structures for local decision-making and resource allocation.</p>
+              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Land-Based Communities</h3>
+              <p className="text-[#6B8E23]">Decentralized governance structures founded on verifiable property records secured by ROOT token.</p>
             </div>
             <div className="text-center">
               <div className="bg-[#F7F7F2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wallet className="h-8 w-8 text-[#6B8E23]" />
+                <Store className="h-8 w-8 text-[#6B8E23]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Local Economies</h3>
-              <p className="text-[#6B8E23]">Token-based microeconomies that support sustainable local development and commerce.</p>
+              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Locally-Owned Economies</h3>
+              <p className="text-[#6B8E23]">Community-owned digital economies that enable sustainable local development and inter-village trade networks.</p>
             </div>
             <div className="text-center">
               <div className="bg-[#F7F7F2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Building className="h-8 w-8 text-[#6B8E23]" />
+                <Handshake className="h-8 w-8 text-[#6B8E23]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Digital Infrastructure</h3>
-              <p className="text-[#6B8E23]">Web3 tools and platforms for managing decentralized village resources and services.</p>
+              <h3 className="text-xl font-semibold text-[#556B2F] mb-4">Community Lending for Housing</h3>
+              <p className="text-[#6B8E23]">Community-aligned capital and lending protocols for accessible home ownership within network villages.</p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Roadmap Section - Now using the new component */}
+      <RoadmapSection />
 
       {/* CTA Section */}
       <section className="container mx-auto px-6 py-20">
@@ -102,13 +107,13 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <Sprout className="h-12 w-12 text-white mx-auto mb-6" />
             <h2 className="text-3xl font-bold text-white mb-6">
-              Build A Network Village
+              Join the Property Record Revolution
             </h2>
             <p className="text-[#F7F7F2] mb-8">
-              Join the movement to create self-sustaining digital communities that own their economy.
+              Be part of a community building transparent, secure property registries that enable land-based villages with locally-owned economies.
             </p>
             <button className="bg-white text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#F7F7F2] transition-colors">
-              Start a Village
+              Start Your Journey
             </button>
           </div>
         </div>

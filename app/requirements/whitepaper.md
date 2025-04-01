@@ -1,150 +1,171 @@
-# Poplar: A Decentralized Protocol for Property Records on Base
+# Poplar: A Decentralized Protocol for Property Records
 
 ## Abstract
-Poplar is a Web3 protocol and application designed to revolutionize property record management by leveraging blockchain technology. Built on **Base**, an Ethereum Layer 2 solution, Poplar enables the secure, transparent, and immutable tracking of property titles, ownership, and detailed property information. Using the **Poplar Root Token (ROOT)**, contributors submit data by staking tokens, and validation is triggered on-demand when users pay a fee, with rewards distributed to those providing or updating valid data over a decaying time period. This proof of stake (PoS) system ensures community-driven consensus, slashing stakes for incorrect submissions to deter fraud. Poplar eliminates inefficiencies, reduces manipulation risks, and fosters trust in real estate ecosystems.
-
----
+Poplar is a protocol and application designed to improve property record management using blockchain technology. It enables secure, transparent, and immutable tracking of property titles, ownership, and detailed property information. Using the **Poplar Root Token (ROOT)**, contributors (**Submitters**) stake tokens to propose data. Validation occurs on-demand when users (**Consumers**) pay a fee. **Validators** stake ROOT to vote on data accuracy, and **Challengers** can stake ROOT to dispute data. Rewards are distributed for valid contributions, favoring recent data. This proof-of-stake (PoS) system uses community-driven consensus and slashes stakes for incorrect submissions or votes, deterring fraud and fostering trust in real estate data.
 
 ## Introduction
-Property records—titles, ownership histories, and property details—are foundational to real estate markets worldwide. Traditionally managed by centralized authorities, these records suffer from inefficiencies, lack of transparency, and vulnerability to errors or fraud. Poplar addresses these challenges by deploying a decentralized blockchain solution on **Base**, combining Ethereum’s security with scalable, low-cost transactions. Named after the resilient and interconnected poplar tree, Poplar reflects a stable, community-driven foundation for property data management. This whitepaper outlines the protocol’s architecture, token economics, anti-fraud mechanisms, technical implementation, and a detailed analysis of its strengths and risks.
+Property records are crucial for real estate markets but often face inefficiencies, opacity, and vulnerability to errors or fraud in traditional centralized systems. Poplar addresses these issues using a decentralized blockchain solution, combining security with scalable, low-cost transactions. The system utilizes the ROOT token within an incentive structure involving staking, fees, validation voting, and challenges to ensure data integrity. Poplar aims to provide a stable, community-driven foundation for property data management. This whitepaper outlines the protocol's architecture, token economics, anti-fraud mechanisms, technical implementation, and analyzes its strengths and risks.
 
----
+## High-Level Overview (Conceptual)
+Poplar operates on a simple principle: data is submitted, validated only when needed, and maintained through economic incentives.
+1.  **Submission**: A Submitter stakes ROOT tokens to add property information to the system. This data initially exists in an unvalidated state.
+2.  **Demand & Validation Trigger**: A Consumer needing verified data pays a ROOT fee (`V_fee`). This fee signals the data's value and initiates the validation process. Alternatively, a Challenger can stake ROOT (`Chal_stake`) to dispute data they believe is incorrect, also triggering validation.
+3.  **Validation & Consensus**: ROOT token holders act as Validators. They stake ROOT (`Val_stake`) and vote on the data's accuracy. A consensus mechanism (e.g., majority vote) determines the outcome.
+4.  **Outcome & Incentives**:
+    *   If validated/challenge fails: The Submitter gets their stake back plus rewards (from `V_fee`/slashed stakes). Correct Validators share the remaining rewards. Incorrect Validators/failed Challengers lose their stake.
+    *   If invalidated/challenge succeeds: The Submitter loses their stake. The successful Challenger receives a significant reward (from the slashed `S_stake`). Correct Validators share rewards. Incorrect Validators lose their stake.
+
+This cycle ensures data is checked for accuracy when its value is demonstrated, funded by those who need it or policed by those who spot errors, all governed by the ROOT token incentives.
+
+## Use Cases
+Poplar's verified property data can support various applications:
+1.  **Real Estate Transactions**: Buyers and sellers can verify titles and property details for secure and efficient transactions.
+2.  **Lending and Mortgages**: Financial institutions can reliably verify property ownership, liens, and characteristics for loan underwriting.
+3.  **Property Management**: Owners and managers can maintain accurate records of property history and condition.
+4.  **Insurance**: Insurers can access verified data for risk assessment and claims processing.
+5.  **Urban Planning and Government Services**: Municipalities can utilize transparent and up-to-date property data for planning, taxation, and public records.
+6.  **Dispute Resolution**: Immutable, validated records can serve as a trusted source of evidence in legal disputes.
+
+## Participant Roles and Incentives
+
+The Poplar protocol uses the ROOT token within a system of incentives and penalties to ensure accurate and current property data.
+
+### Submission Incentives
+- **Goal**: Encourage contribution of accurate, recent, and well-sourced property information.
+- **Mechanism**: Submitters stake ROOT (`S_stake`) to add data. They are rewarded (from `V_fee` pool, potentially subsidized initially) only when their data is successfully validated following Consumer demand. Rewards decay over time to incentivize freshness.
+- **Disincentive**: Submitting inaccurate data risks losing the `S_stake` if validation fails or a challenge succeeds.
+
+### Validation Incentives
+- **Goal**: Ensure diligent verification when requested by a Consumer and achieve robust consensus.
+- **Consumer Role**: Consumers trigger validation by paying a ROOT fee (`V_fee`), funding the verification.
+- **Validator Role**: Validators stake ROOT (`Val_stake`) and vote on data accuracy. They are rewarded (share of `V_fee` and potential slashed stakes) proportional to their stake *only* if they vote with the majority outcome.
+- **System Goal**: Encourage knowledgeable voter participation for trustworthiness. Higher `V_fee` offers can incentivize verification of complex data.
+- **Disincentive**: Validators lose their staked ROOT (`Val_stake`) if they vote against the final consensus.
+
+### Challenge Incentives
+- **Goal**: Enable community policing to correct recently submitted invalid data.
+- **Mechanism**: Challengers stake ROOT (`Chal_stake`) and provide evidence to initiate validation for data they deem incorrect. Successful challenges yield a significant reward, primarily from the original Submitter's slashed `S_stake`.
+- **Disincentive**: Challengers lose their `Chal_stake` if the challenge fails, discouraging frivolous disputes.
+
+### Bootstrapping Incentives
+- **Goal**: Facilitate initial network growth and fair token distribution without pre-sales.
+- **Mechanism**: Early participants earn ROOT by submitting and validating data, possibly with reduced staking requirements and subsidized rewards initially. Distribution is based on active contribution.
+
+These incentives create a self-regulating ecosystem motivated by economic rewards for accuracy.
 
 ## Protocol Architecture
 
 ### Overview
-Poplar operates as a decentralized platform where contributors submit property data with a ROOT stake, users trigger validation by paying a fee when they need the data, and ROOT holders vote on accuracy via a PoS system. Rewards are distributed to contributors of valid data with a time-decay factor, and stakes are slashed for non-consensus submissions. The Poplar Root Token (ROOT) drives the incentive system, rewarding accuracy and penalizing fraud.
+Poplar is a decentralized platform where **Submitters** provide property data with a ROOT stake. Data remains unvalidated until a **Consumer** pays a fee or a **Challenger** initiates a dispute, triggering validation. **Validators** stake ROOT and vote to determine accuracy. The ROOT token drives rewards and slashing.
 
 ### 1. Data Submission
-- **Contributors**: Individuals or entities (e.g., property owners, surveyors) submit property data—such as ownership deeds, titles, or physical characteristics—by staking ROOT tokens. The stake acts as a security deposit to deter frivolous or fraudulent submissions.
-- **Data Types**: Includes ownership records, liens, property boundaries, square footage, and historical transactions.
-- **Storage**: Submitted data is recorded on-chain with a timestamp and submission ID, forming a version history, but remains unvalidated until requested.
+- **Submitters**: Stake ROOT (`S_stake`, potentially variable) to submit property data.
+- **Mechanism**: Submission recorded on-chain with timestamp and ID, creating a version history. Data starts as "unvalidated". Stake acts as a good-faith bond.
+- **Reward Potential**: Eligibility for rewards upon successful validation.
 
 ### 2. On-Demand Validation
-- **Trigger**: When a user (data consumer) needs to use a specific submission (e.g., the latest version), they pay a validation fee in ROOT, choosing the amount based on the data’s importance (e.g., higher for real estate sales, lower for casual queries). The user can submit a validation for a property that has not had data recorded yet to trigger an initial data request.
-- **Voting Process**: The fee triggers a voting period (e.g., 48 hours) where ROOT holders stake tokens to vote “yes” (data is correct) or “no” (data is incorrect). Votes are weighted by stake, and the outcome is determined by majority stake (e.g., 66% threshold).
-- **Outcome**:
-  - **Valid Data**: If “yes” wins, the data is marked as validated, and the fee is distributed (see below).
-  - **Invalid Data**: If “no” wins, the contributor’s stake is slashed, and the fee is either returned to the user or distributed to “no” voters.
+- **Trigger (Consumer)**: Consumer pays `V_fee` in ROOT to request validation. Fee amount can vary, signaling value/urgency. Fee enters an escrow pool.
+- **Voting Process**: Triggers a voting period. **Validators** stake ROOT (`Val_stake`) and vote "Yes" (correct) or "No" (incorrect). Voting power can be proportional to `Val_stake`.
+- **Resolution**: Based on weighted vote outcome (e.g., >66% majority), data status changes to validated or invalidated. Rewards from `V_fee` pool (and potentially slashed stakes) go to majority voters proportional to `Val_stake`. Minority voters have `Val_stake` slashed (e.g., W% reduction). Successful Submitter receives stake back plus reward share; failed Submitter loses `S_stake`.
 
-### 3. Reward Distribution
-- **Valid Data Rewards**: If validated, the fee is split:
-  - **Contributor**: 50% goes to the data provider, adjusted by a decay factor based on time since submission (e.g., `reward = fee * (1 - (time_since_submission / 365 days))`, capped at 0).
-  - **Voters**: 40% is distributed to “yes” voters, proportional to their stake.
-  - **Treasury**: 10% funds protocol development and sustainability.
-- **Invalid Data**: The contributor’s stake is slashed (e.g., 100% loss), and the fee may be redistributed to “no” voters or refunded to the user.
+### 3. Challenge Process
+- **Trigger (Challenger)**: Anyone can challenge recently submitted data (within `N` days) they believe is invalid.
+- **Mechanism**: **Challenger** stakes ROOT (`Chal_stake`) and provides evidence. This forces a validation event.
+- **Resolution**: Validators vote. If challenge succeeds ("No" wins): Original Submitter's `S_stake` is slashed; a portion (e.g., P%) awarded to Challenger, plus standard Validator rewards for "No" voters. If challenge fails ("Yes" wins): Challenger's `Chal_stake` is slashed; rewards distributed to Submitter and "Yes" voters.
 
-### 4. Data Access
-- **Users**: Anyone can view unvalidated data for free, but validated data requires a fee payment to trigger or access prior validation.
-- **Fee Flexibility**: Users set fees based on need, ensuring cost aligns with value.
+- **Users**: Can view unvalidated data freely. Accessing validated data or triggering validation requires a fee. Previously validated data might have a lower access fee (`A_fee`).
+- **Fee Flexibility**: Consumers set `V_fee`, aligning cost with value and incentivizing Validators.
 
----
+## Token Economics (ROOT)
+The **Poplar Root Token (ROOT)**, a standard digital token, powers the ecosystem:
+
+- **Core Utility**:
+    - **Staking**: By Submitters, Validators, Challengers.
+    - **Fees**: Paid by Consumers (`V_fee`, `A_fee`).
+    - **Rewards**: Distributed to participants for accurate contributions.
+    - **Slashing**: Forfeiture of staked ROOT for invalid submissions, incorrect votes, or failed challenges.
+
+- **Participant Flows**:
+
+| Role       | Action                        | Token Flow (In)            | Token Flow (Out)                   | Notes                                                        |
+|------------|-------------------------------|----------------------------|------------------------------------|--------------------------------------------------------------|
+| Submitter  | Stake to submit data          |                            | Stake `S_stake` ROOT               | Risk of slash if invalid                                     |
+| Submitter  | Data validated, rewarded      | Earn `Reward_S` ROOT       |                                    | Reward decays over time (`Reward_S` decreases with `t`)      |
+| Consumer   | Pay for validation            |                            | Pay `V_fee` ROOT                   | Fee scales with value/recency needed                         |
+| Consumer   | Pay for validated data access |                            | Pay `A_fee` ROOT (Optional)        | Lower fee for existing validated data                        |
+| Validator  | Stake & Vote correctly        | Earn share of `V_fee` pool | Stake `Val_stake` ROOT             | Reward proportional to stake; `Val_stake` returned           |
+| Validator  | Vote incorrectly              |                            | Stake `Val_stake` ROOT; Lose `W%`  | Stake partially/fully slashed                                |
+| Challenger | Stake to challenge            |                            | Stake `Chal_stake` ROOT            | Risk of slash if challenge fails                             |
+| Challenger | Challenge succeeds            | Earn `P%` of `S_stake`     | Stake `Chal_stake` ROOT            | Also earns standard Validator rewards; `Chal_stake` returned |
+| Challenger | Challenge fails               |                            | Stake `Chal_stake` ROOT; Lose `M%` | Stake partially/fully slashed                                |
+
+*Note: `Reward_S` comes from `V_fee` pool and potentially protocol subsidies during bootstrapping. Reward decay could follow `BaseReward * e^(-k*t)`, where `t` is time since validation.*
+
+- **Bootstrapping**:
+    - Initial ROOT earned by early participants via contributions.
+    - Initial phase may have low/zero staking requirements and subsidized rewards (funded by protocol allocation or temporary inflation) to encourage adoption.
+
+- **Reward Decay**: Rewards decrease over time since data submission/validation to prioritize recency.
+
+- **Fee Scaling**: Consumers adjust `V_fee` to signal importance and attract validator attention.
+
+- **Sustainability**: A portion of fees (`V_fee`, `A_fee`) and/or slashed stakes might fund a protocol treasury for development, audits, or deflationary measures (token burns).
 
 ## Anti-Fraud Mechanisms
-Preventing fraudulent data changes is central to Poplar. The following mechanisms ensure data integrity:
+Poplar employs several mechanisms to ensure data integrity:
+- **Staking**: Requires Submitters (`S_stake`), Validators (`Val_stake`), and Challengers (`Chal_stake`) to lock ROOT, making malicious actions costly. Minimum stakes deter Sybil attacks.
+- **Slashing**: Penalizes incorrect submissions, incorrect validation votes, or failed challenges through stake forfeiture, providing strong economic disincentives against fraud or negligence.
+- **Challenge System**: Empowers the community to identify and rectify incorrect data, rewarding successful challenges from the incorrect Submitter's slashed stake.
+- **Transparency**: All submissions, stakes, votes, and outcomes are recorded immutably on the blockchain for public scrutiny.
+- **Reward Incentives**: Aligns financial rewards with correct behavior, encouraging maintenance of system integrity.
 
-1. **Staking and Slashing**  
-   Contributors stake ROOT when submitting data. If the data fails validation, their stake is slashed, deterring fraud.
+These layers aim to make fraud economically impractical.
 
-2. **On-Demand PoS Voting**  
-   Validation occurs only when needed, with ROOT holders voting based on stake. Manipulating outcomes requires controlling a majority of staked ROOT, which is costly and difficult.
+## Strengths and Risks
 
-3. **Challenge Mechanism**  
-   After validation, users can challenge data by staking ROOT and providing evidence. A new voting round assesses the challenge:
-   - Successful challenges correct the data, slash the original contributor’s stake, and reward the challenger.
-   - Failed challenges result in the challenger losing their stake.
+### Strengths
+*   **Decentralized & Transparent**: Uses blockchain for immutable, transparent records, reducing manipulation risk.
+*   **Incentivized Accuracy**: Staking, rewards, and slashing align participant incentives with data quality.
+*   **Efficient Validation**: On-demand validation focuses resources where needed, triggered by consumer fees.
+*   **Community-Driven Trust**: Relies on collective action and economic incentives of token holders.
+*   **Robust Anti-Fraud**: Layered defenses (staking, slashing, challenges) make fraud costly.
+*   **Fair Token Distribution**: Bootstrapping via contribution avoids pre-sales, promoting wider ownership.
 
-4. **Immutable Historical Record**  
-   Base’s blockchain records all submissions and validations with timestamps, enabling audits and dispute resolution.
+### Risks and Mitigation Strategies
+*   **Sybil Attacks**: Risk: Multiple fake identities influencing outcomes. Mitigation: Meaningful staking costs (`S_stake`, `Val_stake`, `Chal_stake`); potential future reputation systems.
+*   **Collusion**: Risk: Groups coordinating malicious votes. Mitigation: Significant slashing risk (`W%`, `M%`); costly and transparent nature of on-chain collusion; potential random validator selection.
+*   **Voter Apathy / Lazy Voting**: Risk: Validators not performing due diligence. Mitigation: Financial incentives/penalties (rewards/slashing); variable `V_fee` to attract attention.
+*   **Verification Complexity**: Risk: Off-chain verification may be too costly/complex for standard fees. Mitigation: Variable `V_fee` allows higher rewards; potential specialized validators or oracle integration.
+*   **Parameter Sensitivity**: Risk: Poorly tuned initial parameters (stakes, fees, rewards, slashing, periods) destabilizing the system. Mitigation: Careful modeling/simulation needed; clear governance for adjustments.
+*   **Bootstrapping Difficulty**: Risk: Insufficient early participation. Mitigation: Well-designed initial incentive program.
 
-5. **Initial Onboarding Standards**  
-   Initial property entries require certified documents, establishing a reliable baseline.
-
-These layers combine economic penalties, community oversight, and transparency to make fraud impractical.
-
----
-
-## Token Economics
-The **Poplar Root Token (ROOT)** powers the ecosystem:
-
-- **Supply**: Fixed initial supply, adjustable via governance votes by ROOT holders.
-- **Utility**:
-  - **Staking**: Required for submitting data, voting, and challenging records.
-  - **Rewards**: Paid to contributors and voters for valid data, with decay for contributors.
-  - **Access Fees**: Paid by users to trigger validation, redistributed to participants.
-  - **Governance**: ROOT holders vote on protocol upgrades.
-- **Sustainability**: 10% of fees fund a treasury, with potential token burns to manage supply.
-
----
-
-## Strengths and Risks of the Protocol Design
-
-### Validation System
-- **Strengths**:
-  - **On-Demand Efficiency**: Validation occurs only when needed, reducing unnecessary costs and aligning effort with user demand.
-  - **Community Consensus**: PoS voting ensures broad participation, with higher fees attracting more voters for critical data, enhancing accuracy.
-  - **Flexibility**: Users control validation depth via fee size, balancing cost and reliability.
-- **Risks**:
-  - **Lazy Validation**: Unvalidated data may be used if no one pays, risking errors. Mitigation: Require validation for high-stakes actions or flag unverified data.
-  - **Low Voter Turnout**: Small fees might attract few voters, risking manipulation. Mitigation: Set minimum fees or scale voting periods with fee size.
-
-### Incentive System
-- **Strengths**:
-  - **Accuracy Incentive**: Contributors are rewarded for valid, recent data and penalized for errors, encouraging quality submissions.
-  - **Voter Participation**: Fee shares motivate voters to engage, especially for high-fee validations, ensuring robust consensus.
-  - **Time Decay**: Rewards favor recent updates, keeping data current and relevant.
-- **Risks**:
-  - **Old Data Neglect**: Decay might discourage validation of historical data, leaving gaps. Mitigation: Offer premium fees for validating older records.
-  - **Spam Submissions**: Providers might flood the system with versions, though staking and slashing deter this. Mitigation: Limit submission frequency.
-
-### Tokenomics System
-- **Strengths**:
-  - **Balanced Incentives**: Providers seek rewards, voters earn from participation, users pay for value, and the treasury ensures sustainability.
-  - **Economic Deterrence**: Stake slashing aligns provider interests with accuracy, reducing fraud.
-  - **Governance Empowerment**: ROOT holders shape the protocol, fostering community ownership.
-- **Risks**:
-  - **Fee Misalignment**: If fees are too low, rewards may not attract enough voters or providers. Mitigation: Adjust fee structures via governance.
-  - **Decay Overreach**: Excessive decay could undervalue valid older data. Mitigation: Use a transparent, adjustable decay formula (e.g., linear or exponential).
-
-Overall, the system produces valid, consistent data by tying validation to user needs, incentivizing accuracy through rewards and penalties, and leveraging community consensus via PoS. Risks are manageable with careful parameter tuning and governance.
-
----
+While risks exist, strong economic mechanisms mitigate them. Continuous monitoring and governance are essential.
 
 ## Technical Implementation
-- **Blockchain**: Ethereum L2 with optimistic rollups.
-- **Smart Contracts**: Written in Solidity, managing staking, voting, fee distribution with decay, slashing, and challenges.
-- **Frontend**: A dApp for submitting, validating, challenging, and accessing data, with clear fee and reward displays.
-- **Storage**: IPFS for off-chain storage of large documents, linked to on-chain hashes.
+- **Blockchain**: A suitable public blockchain platform providing security, scalability, and smart contract capabilities.
+- **Smart Contracts**: Manage staking, voting, fee distribution, slashing, challenges, and data pointers.
+- **Frontend**: A decentralized application (dApp) interface for user interactions (submission, validation requests, challenges, data viewing).
+- **Storage**: Decentralized storage solutions (e.g., IPFS) for large data files, linked via on-chain hashes.
 
----
+## Open Questions and Future Considerations
 
-## Use Cases
-1. **Real Estate Transactions**: Buyers validate titles for secure purchases.
-2. **Lending**: Banks verify liens and ownership for loans.
-3. **Urban Planning**: Governments access transparent property data.
-4. **Dispute Resolution**: Courts use immutable records to settle conflicts.
+Further specification, modeling, and discussion are needed:
 
----
+*   **Parameter Optimization**: Defining optimal initial values and governance for adjusting `S_stake`, `Val_stake`, `Chal_stake`, `V_fee` range, `A_fee`, reward/slashing percentages (`W%`, `P%`, `M%`), challenge window (`N` days), voting periods/thresholds.
+*   **Reward Decay Function**: Specifying the decay mechanism (`BaseReward * e^(-k*t)` or other) and parameters (`k`).
+*   **Vote Handling**: Defining procedures for ties, quorum requirements, and edge cases.
+*   **Dispute Resolution**: Handling ambiguous evidence or complex off-chain verification within the on-chain framework. Potential need for arbitration layers.
+*   **Token Supply**: Determining fixed vs. inflationary supply, token burn mechanics, treasury allocation details.
+*   **Data Model & Integration**: Defining the specific structure for property data. Strategies for integrating/verifying diverse off-chain data sources (e.g., government records, sensors).
+*   **Scalability**: Ensuring performance under high transaction and data load.
+*   **Governance Structure**: Defining the decision-making process for protocol upgrades and parameter changes (e.g., token-holder voting).
+
+Addressing these is critical for successful implementation.
 
 ## Roadmap
-- **Phase 1**: Deploy on testnet, onboard initial properties with certified data.
-- **Phase 2**: Launch mainnet with on-demand validation and challenge mechanisms.
-- **Phase 3**: Add smart contract-based transactions (e.g., escrow) and expand globally.
-
----
-
-## Why EVM?
-
-Poplar is built on an Ethereum Layer 2 solution, for the following reasons:
-
-- **Ethereum Security**: L2s inherits Ethereum’s battle-tested security, ensuring property records remain tamper-proof and trustworthy—crucial for high-stakes data.
-- **Scalability and Cost Efficiency**: Using optimistic rollups, L2 processes transactions off-chain, reducing fees and increasing throughput compared to Ethereum’s mainnet, making frequent interactions affordable.
-- **Future Potential**: L2s offers a developer-friendly environment and potential for mainstream adoption, aligning with Poplar’s vision of global scalability.
-- **EVM Compatibility**: L2’s compatibility with Ethereum’s virtual machine ensures seamless smart contract development and interoperability with Ethereum-based tools.
-
-While the 7-day finality delay (due to optimistic rollups) exists, Poplar mitigates this with a robust on-demand validation process and challenge mechanism, ensuring timely and accurate data when needed.
-
----
+- **Phase 1 (Testnet)**: Deploy core smart contracts on a test network. Onboard initial datasets. Test submission, validation, and challenge flows. Gather community feedback.
+- **Phase 2 (Mainnet Launch)**: Deploy audited contracts to the main blockchain. Enable core functionalities: data submission with staking, consumer-paid validation, validator voting/rewards/slashing, challenge mechanism. Implement bootstrapping incentives.
+- **Phase 3 (Expansion & Features)**: Enhance dApp usability. Explore integrations with external data sources/oracles. Develop advanced features (e.g., smart contract-based transactions like escrow). Pursue broader adoption and partnerships. Refine governance model.
 
 ## Conclusion
-Poplar leverages L2 scalable, secure infrastructure to create a decentralized property record system that is efficient, transparent, and fraud-resistant. By using ROOT and an on-demand PoS validation system, Poplar ensures data is validated when it matters, with rewards incentivizing accuracy and community consensus. While risks like lazy validation and low voter turnout exist, they are addressable through design tweaks and governance. Poplar redefines public property information for the Web3 era.
+Poplar proposes a decentralized property record system using blockchain technology for improved efficiency, transparency, and fraud resistance. Its core strength lies in the ROOT token incentive system, aligning Submitter, Consumer, Validator, and Challenger actions with data accuracy through staking, fees, rewards, and slashing. The on-demand validation model focuses resources efficiently. While challenges like parameter tuning and governance require careful planning and community input, the architecture provides a solid foundation. Poplar has the potential to significantly enhance public property information management by creating a self-regulating, trustworthy ecosystem.
