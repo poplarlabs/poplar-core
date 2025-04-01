@@ -26,7 +26,7 @@ export default function Whitepaper() {
         <section className="mb-12" id="introduction">
           <h2 className="text-2xl font-bold text-[#556B2F] mb-4">Introduction</h2>
           <p className="text-[#6B8E23] leading-relaxed mb-6">
-            Property records are crucial for real estate markets but often face inefficiencies, opacity, and vulnerability to errors or fraud in traditional centralized systems. Poplar addresses these issues using a decentralized blockchain solution, combining security with scalable, low-cost transactions. The system utilizes the ROOT token within an incentive structure involving staking, fees, validation voting, and challenges to ensure data integrity. Poplar aims to provide a stable, community-driven foundation for property data management. This whitepaper outlines the protocol's architecture, token economics, anti-fraud mechanisms, technical implementation, and analyzes its strengths and risks.
+            Property records are crucial for real estate markets but often face inefficiencies, opacity, and vulnerability to errors or fraud in traditional centralized systems. Poplar addresses these issues using a decentralized blockchain solution, combining security with scalable, low-cost transactions. The system utilizes the ROOT token within an incentive structure involving staking, fees, validation voting, and challenges to ensure data integrity. Poplar aims to provide a stable, community-driven foundation for property data management. This whitepaper outlines the protocol&apos;s architecture, token economics, anti-fraud mechanisms, technical implementation, and analyzes its strengths and risks.
           </p>
         </section>
 
@@ -40,10 +40,10 @@ export default function Whitepaper() {
               <strong>Submission</strong>: A Submitter stakes ROOT tokens to add property information to the system. This data initially exists in an unvalidated state.
             </li>
             <li className="leading-relaxed">
-              <strong>Demand & Validation Trigger</strong>: A Consumer needing verified data pays a ROOT fee (<code>V_fee</code>). This fee signals the data's value and initiates the validation process. Alternatively, a Challenger can stake ROOT (<code>Chal_stake</code>) to dispute data they believe is incorrect, also triggering validation.
+              <strong>Demand & Validation Trigger</strong>: A Consumer needing verified data pays a ROOT fee (<code>V_fee</code>). This fee signals the data&apos;s value and initiates the validation process. Alternatively, a Challenger can stake ROOT (<code>Chal_stake</code>) to dispute data they believe is incorrect, also triggering validation.
             </li>
             <li className="leading-relaxed">
-              <strong>Validation & Consensus</strong>: ROOT token holders act as Validators. They stake ROOT (<code>Val_stake</code>) and vote on the data's accuracy. A consensus mechanism (e.g., majority vote) determines the outcome.
+              <strong>Validation & Consensus</strong>: ROOT token holders act as Validators. They stake ROOT (<code>Val_stake</code>) and vote on the data&apos;s accuracy. A consensus mechanism (e.g., majority vote) determines the outcome.
             </li>
             <li className="leading-relaxed">
               <strong>Outcome & Incentives</strong>:
@@ -58,7 +58,7 @@ export default function Whitepaper() {
         <section className="mb-12" id="use-cases">
           <h2 className="text-2xl font-bold text-[#556B2F] mb-4">Use Cases</h2>
           <p className="text-[#6B8E23] leading-relaxed mb-4">
-            Poplar's verified property data can support various applications:
+            Poplar&apos;s verified property data can support various applications:
           </p>
           <ol className="list-decimal pl-6 space-y-4 text-[#6B8E23]">
             <li className="leading-relaxed"><strong>Real Estate Transactions</strong>: Buyers and sellers can verify titles and property details for secure and efficient transactions.</li>
@@ -101,7 +101,7 @@ export default function Whitepaper() {
               <ul className="list-disc pl-6 space-y-2 text-[#6B8E23]">
                 <li className="leading-relaxed"><strong>Goal</strong>: Enable community policing to correct recently submitted invalid data.</li>
                 <li className="leading-relaxed"><strong>Mechanism</strong>: Challengers stake ROOT (<code>Chal_stake</code>) and provide evidence to initiate validation for data they deem incorrect.</li>
-                <li className="leading-relaxed"><strong>Reward</strong>: Successful challenges yield a significant reward, primarily from the original Submitter's slashed <code>S_stake</code>.</li>
+                <li className="leading-relaxed"><strong>Reward</strong>: Successful challenges yield a significant reward, primarily from the original Submitter&apos;s slashed <code>S_stake</code>.</li>
                 <li className="leading-relaxed"><strong>Disincentive</strong>: Challengers lose their <code>Chal_stake</code> if the challenge fails, discouraging frivolous disputes.</li>
               </ul>
             </div>
@@ -177,7 +177,7 @@ export default function Whitepaper() {
               <strong>Slashing</strong>: Penalizes incorrect submissions, incorrect validation votes, or failed challenges through stake forfeiture, providing strong economic disincentives against fraud or negligence.
             </li>
             <li className="leading-relaxed">
-              <strong>Challenge System</strong>: Empowers the community to identify and rectify incorrect data, rewarding successful challenges from the incorrect Submitter's slashed stake.
+              <strong>Challenge System</strong>: Empowers the community to identify and rectify incorrect data, rewarding successful challenges from the incorrect Submitter&apos;s slashed stake.
             </li>
             <li className="leading-relaxed">
               <strong>Transparency</strong>: All submissions, stakes, votes, and outcomes are recorded immutably on the blockchain for public scrutiny.
