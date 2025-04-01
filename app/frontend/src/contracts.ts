@@ -1,4 +1,3 @@
-import { parseAbi } from 'viem'
 import { erc20Abi } from 'viem'
 
 // TODO: Replace with actual ROOT token contract address

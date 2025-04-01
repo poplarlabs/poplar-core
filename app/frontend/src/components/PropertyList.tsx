@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useReadContract } from 'wagmi'
 import { useNavigate } from 'react-router-dom'
 import { formatEther } from 'viem'
@@ -6,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { POPLAR_CONTRACT_ADDRESS, POPLAR_CONTRACT_ABI } from '@/contracts'
 import { formatAddress } from '@/lib/utils'
 
-interface Property {
+export interface Property {
   id: `0x${string}`
   submitter: `0x${string}`
   country: string

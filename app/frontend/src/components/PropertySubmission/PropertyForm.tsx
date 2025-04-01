@@ -24,7 +24,6 @@ export interface PropertyFormData {
 }
 
 const initialFormData: PropertyFormData = {
-  legalDescription: 'Lot 1, Block 2 of Sunset Heights Addition'
   country: 'US',
   region: 'Alabama',
   locality: 'Baldwin County',
@@ -32,6 +31,7 @@ const initialFormData: PropertyFormData = {
   streetAddress: '123 Main St',
   city: 'Birmingham',
   zipCode: '35201',
+  legalDescription: 'Lot 1, Block 2 of Sunset Heights Addition'
 }
 
 const MINIMUM_STAKE = parseEther('100') // 100 ROOT tokens

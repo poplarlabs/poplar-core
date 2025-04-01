@@ -45,20 +45,6 @@ export const POPLAR_ABI = [
   }
 ] as const;
 
-interface PropertyData {
-  id: `0x${string}`;
-  submitter: `0x${string}`;
-  country: string;
-  region: string;
-  locality: string;
-  parcel: string;
-  ipfsHash: string;
-  stakedAmount: bigint;
-  lastUpdateTime: bigint;
-  validated: boolean;
-  validationStatus: number;
-}
-
 // Hook to get all properties needing validation
 export function usePropertiesNeedingValidation() {
   const { data: properties, isLoading, error } = useReadContract({

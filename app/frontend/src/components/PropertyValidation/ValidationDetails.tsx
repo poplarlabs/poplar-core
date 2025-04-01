@@ -44,10 +44,6 @@ export function ValidationDetails() {
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  if (!propertyId) {
-    return <div>Invalid property ID</div>
-  }
-
   // Contract interactions
   const { writeContractAsync: approveTokens } = useWriteContract()
   const { writeContractAsync: castVote } = useWriteContract()
@@ -61,10 +57,50 @@ export function ValidationDetails() {
     functionName: 'properties',
     args: [propertyId as `0x${string}`],
     query: {
-      enabled: true,
+      enabled: !!propertyId,
       refetchInterval: 2000,
     },
   })
+
+  // Get validation details
+  const { data: validationData, isLoading: isValidationLoading } = useReadContract({
+    address: POPLAR_CONTRACT_ADDRESS,
+    abi: POPLAR_CONTRACT_ABI,
+    functionName: 'validations',
+    args: [propertyId as `0x${string}`],
+    query: {
+      enabled: !!propertyId,
+      refetchInterval: 2000,
+    },
+  })
+
+  // Check if user has already voted
+  const { data: userStakeData, isLoading: _isUserStakeLoading } = useReadContract({
+    address: POPLAR_CONTRACT_ADDRESS,
+    abi: POPLAR_CONTRACT_ABI,
+    functionName: 'getValidationStake',
+    args: [propertyId as `0x${string}`, address!],
+    query: {
+      enabled: isConnected && !!propertyId,
+      refetchInterval: 2000,
+    },
+  })
+
+  // Check ROOT token allowance
+  const { data: allowance, isLoading: _isAllowanceLoading } = useReadContract({
+    address: ROOT_TOKEN_ADDRESS,
+    abi: ROOT_TOKEN_ABI,
+    functionName: 'allowance',
+    args: [address!, POPLAR_CONTRACT_ADDRESS],
+    query: {
+      enabled: isConnected && !!propertyId,
+      refetchInterval: 2000,
+    },
+  })
+
+  if (!propertyId) {
+    return <div>Invalid property ID</div>
+  }
 
   // Transform tuple to object
   const property = propertyData ? {
@@ -81,18 +117,6 @@ export function ValidationDetails() {
     validationStatus: propertyData[10]
   } as Property : undefined
 
-  // Get validation details
-  const { data: validationData, isLoading: isValidationLoading } = useReadContract({
-    address: POPLAR_CONTRACT_ADDRESS,
-    abi: POPLAR_CONTRACT_ABI,
-    functionName: 'validations',
-    args: [propertyId as `0x${string}`],
-    query: {
-      enabled: true,
-      refetchInterval: 2000,
-    },
-  })
-
   // Transform tuple to object
   const validation = validationData ? {
     propertyId: validationData[0],
@@ -103,36 +127,12 @@ export function ValidationDetails() {
     concluded: validationData[5]
   } as Validation : undefined
 
-  // Check if user has already voted
-  const { data: userStakeData, isLoading: isUserStakeLoading } = useReadContract({
-    address: POPLAR_CONTRACT_ADDRESS,
-    abi: POPLAR_CONTRACT_ABI,
-    functionName: 'getValidationStake',
-    args: [propertyId as `0x${string}`, address!],
-    query: {
-      enabled: isConnected,
-      refetchInterval: 2000,
-    },
-  })
-
   // Transform tuple to object
   const userStake = userStakeData ? {
     amount: userStakeData[0],
     support: userStakeData[1],
     claimed: userStakeData[2]
   } as UserStake : undefined
-
-  // Check ROOT token allowance
-  const { data: allowance, isLoading: isAllowanceLoading } = useReadContract({
-    address: ROOT_TOKEN_ADDRESS,
-    abi: ROOT_TOKEN_ABI,
-    functionName: 'allowance',
-    args: [address!, POPLAR_CONTRACT_ADDRESS],
-    query: {
-      enabled: isConnected,
-      refetchInterval: 2000,
-    },
-  })
 
   const handleVote = async (support: boolean) => {
     setError(null)
