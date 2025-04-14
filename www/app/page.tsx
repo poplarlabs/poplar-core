@@ -4,6 +4,15 @@ import Image from 'next/image';
 import { Leaf, Users, Wallet, Building, Sprout, ArrowRight, Map, Store, Handshake } from 'lucide-react';
 import RoadmapSection from './components/RoadmapSection';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the LaunchListWidget with SSR disabled
+const DynamicLaunchListWidget = dynamic(() => import('./components/LaunchListWidget'), {
+  ssr: false,
+  // Optional: Add a loading state while the component loads
+  // loading: () => <p>Loading waitlist...</p>,
+});
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F7F7F2] to-white">
@@ -20,15 +29,13 @@ export default function Home() {
               style={{ objectFit: 'contain' }}
               quality={100}
             />
-            <span className="text-2xl font-bold text-[#556B2F]">Poplar Labs</span>
+            <div className="text-2xl font-bold text-[#556B2F]">Poplar Labs</div>
           </div>
           <div className="hidden md:flex space-x-8">
-            <Link href="/whitepaper" className="text-[#6B8E23] hover:text-[#556B2F]">Whitepaper</Link>
-            <a href="#roadmap" className="text-[#6B8E23] hover:text-[#556B2F]">Roadmap</a>
+            <Link href="#roadmap" className="text-[#6B8E23] hover:text-[#556B2F]">Roadmap</Link>
+            <Link href="/litepaper" className="text-[#6B8E23] hover:text-[#556B2F]">Litepaper</Link>
+            <Link href="mailto:tremylous@poplarlabs.xyz" className="text-[#6B8E23] hover:text-[#556B2F]">Contact</Link>
           </div>
-          <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-6 py-2 rounded-full hover:bg-[#556B2F] transition-colors">
-            Open App
-          </a>
         </div>
       </nav>
 
@@ -42,18 +49,15 @@ export default function Home() {
             <p className="text-lg text-[#6B8E23] mb-8">
               Build decentralized villages on secure land registries, create community-owned economies, and enable community lending for home ownership.
             </p>
-            <div className="flex space-x-4">
-              <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-[#6B8E23] text-white px-8 py-3 rounded-full hover:bg-[#556B2F] transition-colors flex items-center">
-                Explore the Protocol<ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <Link href="/whitepaper" className="border-2 border-[#6B8E23] text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#6B8E23] hover:text-white transition-colors">
-                Read Whitepaper
-              </Link>
+            <div className="mt-8 mb-4">
+              <p className="text-lg font-semibold text-[#556B2F] mb-2">Launching Soon: Be the First to Know!</p>
+              <p className="text-[#6B8E23]">Be the first to know when Poplar Labs launches. Get exclusive updates and early access to help build the future of community-owned network villages.</p>
             </div>
+            <DynamicLaunchListWidget />
           </div>
           <div className="relative aspect-[4/3] w-full">
             <Image
-              src="/images/hero-path.jpg"
+              src="/images/hero-path.png"
               alt="Winding path through aspen trees in a green mountain landscape"
               className="rounded-2xl shadow-2xl"
               priority
@@ -105,19 +109,12 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <Sprout className="h-12 w-12 text-white mx-auto mb-6" />
             <h2 className="text-3xl font-bold text-white mb-6">
-              Ready to Contribute?
+              Launching Soon: Be the First to Know!
             </h2>
             <p className="text-[#F7F7F2] mb-8">
-              Explore the Poplar Protocol app to see how you can contribute to building transparent, secure property registries for community-owned network villages.
+              Poplar Labs is preparing to launch. Sign up below to join our waitlist and get exclusive early access and updates on community-owned network villages.
             </p>
-            <a target="_blank" rel="noopener noreferrer" href="https://app.poplarlabs.xyz" className="bg-white text-[#6B8E23] px-8 py-3 rounded-full hover:bg-[#F7F7F2] transition-colors inline-flex items-center">
-              Explore the Protocol <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-            <div className="mt-4">
-              <Link href="/whitepaper" className="text-[#F7F7F2] hover:text-white underline">
-                Or, learn more by reading the Whitepaper
-              </Link>
-            </div>
+            <DynamicLaunchListWidget />
           </div>
         </div>
       </section>
@@ -155,8 +152,8 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-[#F7F7F2] opacity-80">
                 <li><a href="#" className="hover:opacity-100">Documentation (Coming Soon)</a></li>
-                <li><Link href="/whitepaper" className="hover:opacity-100">Whitepaper</Link></li>
-                <li><a href="#" className="hover:opacity-100">GitHub (Coming Soon)</a></li>
+                <li><Link href="/litepaper" className="hover:opacity-100">Litepaper</Link></li>
+                <li><a href="https://github.com/poplarlabs" target="_blank" rel="noopener noreferrer" className="hover:opacity-100">GitHub</a></li>
               </ul>
             </div>
             <div>

@@ -97,7 +97,7 @@ const RoadmapSection = () => {
       </div>
 
       {/* Hills Background */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 z-0">
+      {/* <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 z-0">
         <Image
           src="/images/hills-background.png"
           alt="Green hills background"
@@ -105,7 +105,7 @@ const RoadmapSection = () => {
           style={{ objectFit: 'cover', objectPosition: 'bottom' }}
           quality={80}
         />
-      </div>
+      </div> */}
     </section>
   );
 };

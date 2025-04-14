@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-export default function Whitepaper() {
+export default function Litepaper() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F7F7F2] to-white">
       {/* Back to Home Link */}
@@ -12,7 +12,7 @@ export default function Whitepaper() {
         </Link>
       </div>
 
-      {/* Whitepaper Content */}
+      {/* Litepaper Content */}
       <article className="container mx-auto px-6 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold text-[#556B2F] mb-8" id="title">Poplar Phase 1: <br/>A Decentralized Protocol for Property Records</h1>
 
@@ -26,7 +26,7 @@ export default function Whitepaper() {
         <section className="mb-12" id="introduction">
           <h2 className="text-2xl font-bold text-[#556B2F] mb-4">Introduction</h2>
           <p className="text-[#6B8E23] leading-relaxed mb-6">
-            Property records are crucial for real estate markets but often face inefficiencies, opacity, and vulnerability to errors or fraud in traditional centralized systems. Poplar addresses these issues using a decentralized blockchain solution, combining security with scalable, low-cost transactions. The system utilizes the ROOT token within an incentive structure involving staking, fees, validation voting, and challenges to ensure data integrity. Poplar aims to provide a stable, community-driven foundation for property data management. This whitepaper outlines the protocol&apos;s architecture, token economics, anti-fraud mechanisms, technical implementation, and analyzes its strengths and risks.
+            Property records are crucial for real estate markets but often face inefficiencies, opacity, and vulnerability to errors or fraud in traditional centralized systems. Poplar addresses these issues using a decentralized blockchain solution, combining security with scalable, low-cost transactions. The system utilizes the ROOT token within an incentive structure involving staking, fees, validation voting, and challenges to ensure data integrity. Poplar aims to provide a stable, community-driven foundation for property data management. This litepaper outlines the protocol&apos;s architecture, token economics, anti-fraud mechanisms, technical implementation, and analyzes its strengths and risks.
           </p>
         </section>
 
