@@ -46,8 +46,8 @@ const RoadmapSection = () => {
   // --- End Updated SVG Calculations ---
 
   return (
-    <section id="roadmap" className="relative container mx-auto px-6 py-16 overflow-hidden">
-      <h2 className="text-3xl font-bold text-center text-[#556B2F] mb-16">
+    <section id="roadmap" className="relative container mx-auto px-6 pt-16 overflow-hidden">
+      <h2 className="text-3xl font-bold text-center text-poplar-text mb-16">
         Protocol Roadmap
       </h2>
 
@@ -63,8 +63,9 @@ const RoadmapSection = () => {
           preserveAspectRatio="xMidYMid meet"
         >
           <path
-            d={pathD} // Using updated pathD
-            stroke="#6B8E23"
+            d={pathD}
+            stroke="currentColor"
+            className="text-poplar-text/40"
             strokeWidth="3"
             strokeDasharray="8 8"
             strokeLinecap="round"
@@ -72,10 +73,9 @@ const RoadmapSection = () => {
         </svg>
 
         {roadmapItems.map((item, index) => (
-          // Removed justify-start/end, added min-height for absolute positioning context
           <div key={index} className={`relative mb-16 flex flex-col md:flex-row items-center md:min-h-[176px]`}>
             {/* Icon Container - Absolute positioning on md+ */}
-            <div className={`w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#F7F7F2] flex items-center justify-center shadow-md z-10
+            <div className={`w-36 h-36 md:w-44 md:h-44 rounded-full bg-poplar-accent flex items-center justify-center shadow-md z-10
                            mb-4 md:mb-0 md:absolute md:top-0 ${index % 2 === 0 ? 'md:left-0' : 'md:right-0'}`}>
               <Image
                 src={item.icon}
@@ -88,7 +88,7 @@ const RoadmapSection = () => {
 
             {/* Text Container - Padding ensures text clears icon + 1rem gap */}
             <div className={`w-full text-center ${index % 2 === 0 ? 'md:text-left md:pl-[calc(11rem+1rem)]' : 'md:text-right md:pr-[calc(11rem+1rem)]'}`}>
-              <p className="text-xl font-semibold text-[#6B8E23] leading-relaxed">
+              <p className="text-xl font-semibold text-poplar-text leading-relaxed">
                 {item.text}
               </p>
             </div>
