@@ -54,6 +54,16 @@ export default function Home() {
               <p className="text-poplar-text/80">Be the first to know when Poplar Labs launches. Get exclusive updates and early access to help build the future of community-owned network villages.</p>
             </div>
             <DynamicLaunchListWidget />
+            <div className="mt-4 text-center md:text-left">
+              <Link
+                href="https://app.towns.com/t/0xa13c14f46c11e61679bcbecfd1b4c389b685e9e4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-poplar-text/70 hover:text-poplar-text hover:underline transition-colors inline-flex items-center"
+              >
+                Or join the Towns chat to share feedback & shape the future <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </div>
           </div>
           <div className="relative aspect-[4/3] w-full">
             <Image
@@ -159,7 +169,7 @@ export default function Home() {
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
               <ul className="space-y-2 text-white/80">
-                <li><a href="https://app.towns.com/poplar-labs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Towns Chat</a></li>
+                <li><a href="https://app.towns.com/t/0xa13c14f46c11e61679bcbecfd1b4c389b685e9e4/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Towns Chat</a></li>
                 <li><a href="https://x.com/poplarlabsxyz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter</a></li>
               </ul>
             </div>
