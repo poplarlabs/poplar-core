@@ -7,7 +7,7 @@ import "forge-std/console.sol";
 contract DeploymentManager is Script {
     string constant DEPLOYMENTS_PATH = "deployments/";
 
-    function saveDeployment(string memory network, string memory contractName, address deployedAt) internal {
+    function saveDeployment(string memory network, string memory contractName, address deployedAt) public {
         string memory deploymentFile = string.concat(
             DEPLOYMENTS_PATH,
             network,
@@ -26,7 +26,7 @@ contract DeploymentManager is Script {
         console.log("Saved deployment info for %s on %s at %s", contractName, network, deployedAt);
     }
 
-    function getDeployedAddress(string memory network, string memory contractName) internal view returns (address) {
+    function getDeployedAddress(string memory network, string memory contractName) public view returns (address) {
         string memory deploymentFile = string.concat(
             DEPLOYMENTS_PATH,
             network,

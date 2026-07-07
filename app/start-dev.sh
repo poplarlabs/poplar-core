@@ -19,7 +19,14 @@ sleep 3
 # Deploy contracts
 echo "Deploying contracts..."
 cd contracts || exit 1
-forge script script/Deploy.s.sol --broadcast --rpc-url http://localhost:8545
+forge clean
+# Provide the default anvil private key as a fallback
+ANVIL_DEFAULT_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+# Use PRIVATE_KEY env var if set, otherwise use the default Anvil key
+KEY_TO_USE=${PRIVATE_KEY:-$ANVIL_DEFAULT_PRIVATE_KEY}
+echo "Using private key ending with: ${KEY_TO_USE: -4}" # Log last 4 chars for verification
+# Add --ffi to allow vm.writeFile
+forge script script/Deploy.s.sol --broadcast --rpc-url http://localhost:8545 --private-key $KEY_TO_USE --ffi
 cd ..
 
 # Navigate to the backend directory
@@ -40,18 +47,16 @@ if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
 fi
 
-# Start the backend server in the background
-echo "Starting backend server..."
-python main.py &
-BACKEND_PID=$!
-echo "Backend started with PID $BACKEND_PID."
-
-# Return to root directory
+# Return to app directory before starting backend
 cd ..
 
-# Wait for user input before starting frontend
-read -p "Press Enter to start the frontend server..."
-
+# Start the backend server in the background as a module
+echo "Starting backend server..."
+# Use mock DB for dev script
+export USE_MOCK_DB=true
+python -m backend.main &
+BACKEND_PID=$!
+echo "Backend started with PID $BACKEND_PID."
 
 # Navigate to the frontend directory
 cd frontend || exit 1
