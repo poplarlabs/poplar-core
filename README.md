@@ -18,6 +18,7 @@ Each layer pulls the one below it into existence. The full statement is in [GOAL
 | [GOALS.md](GOALS.md) | Mission and top-level goal (settled), plus draft goals | Current |
 | [requirements/whitepaper.md](requirements/whitepaper.md) | Whitepaper: manifesto and roadmap for groves | Current (draft) |
 | [requirements/plan-v2.md](requirements/plan-v2.md) | The plan: two converging tracks, phases, alternatives considered, kill risks | Current (draft) |
+| [requirements/gateway-spec.md](requirements/gateway-spec.md) | Engineering spec for the gateway (Phase 1 workstreams) | Current (draft) |
 | [requirements/archive/](requirements/archive/) | Superseded specs and early ideation | Historical |
 | `www/` | [poplarlabs.xyz](https://www.poplarlabs.xyz) — the public site | Live |
 | `uma/` | UMA Optimistic Oracle V3 integration experiment — prior art for the gateway's attestation rails | Experiment |

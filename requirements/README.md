@@ -5,6 +5,7 @@
 - [../GOALS.md](../GOALS.md) — mission and top-level goal (settled), plus draft gateway/flywheel/backing goals.
 - [whitepaper.md](whitepaper.md) — manifesto and roadmap for groves (formerly "network villages"): the bet, historical precedents, the four-layer architecture, principles, and honest placeholders for unfinalized detail. Draft. **Internal** — the public poplarlabs.xyz/vision page is a reader-facing adaptation that deliberately omits the strategy layer (phases, principles-as-strategy, kill risks, mechanism detail).
 - [plan-v2.md](plan-v2.md) — the operational path: two converging tracks, Phases 0–4, governing principles, alternatives considered, kill risks. Draft, revised after stress-testing on 2026-07-06.
+- [gateway-spec.md](gateway-spec.md) — engineering spec for Phase 1: the five gateway workstreams (county selection, data spine, attestation rails, guarantees + fee-funded reserve, design partners), parameter defaults, milestones. Draft with tunables.
 
 ## Phase 0 execution
 
