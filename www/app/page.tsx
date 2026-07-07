@@ -2,14 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { ArrowRight, Map, Sprout, Handshake } from 'lucide-react';
 import RoadmapSection from './components/RoadmapSection';
 import RootSystem from './components/RootSystem';
-
-const DynamicLaunchListWidget = dynamic(() => import('./components/LaunchListWidget'), {
-  ssr: false,
-});
+import PoplarMark from './components/PoplarMark';
+import FollowForm from './components/FollowForm';
 
 export default function Home() {
   return (
@@ -18,15 +15,7 @@ export default function Home() {
       <nav className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src="/images/logo-transparent.png"
-              alt="Poplar logo"
-              width={32}
-              height={32}
-              className="h-8 w-8"
-              style={{ objectFit: 'contain' }}
-              quality={100}
-            />
+            <PoplarMark className="h-8 w-8 text-poplar-text" />
             <div className="text-2xl font-display text-poplar-text">Poplar</div>
           </Link>
           <div className="flex items-center space-x-1 md:space-x-2">
@@ -275,7 +264,7 @@ export default function Home() {
                 Not there yet? Follow the work as it grows.
               </p>
               <div className="max-w-xl mx-auto">
-                <DynamicLaunchListWidget variant="cta" />
+                <FollowForm />
               </div>
             </div>
           </div>
@@ -288,15 +277,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Image
-                  src="/images/logo-transparent.png"
-                  alt="Poplar logo"
-                  width={24}
-                  height={24}
-                  className="h-6 w-6"
-                  style={{ objectFit: 'contain' }}
-                  quality={100}
-                />
+                <PoplarMark className="h-6 w-6 text-white" />
                 <span className="text-xl font-display">Poplar</span>
               </div>
               <p className="text-white/80">

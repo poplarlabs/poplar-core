@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Young_Serif, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/react"
-import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
@@ -35,16 +34,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${youngSerif.variable} ${plexMono.variable}`}>
-      <head>
-        <link rel="icon" href="/images/logo-transparent.png" sizes="any" />
-        <link rel="apple-touch-icon" href="/images/logo-transparent.png" />
-        <Script
-          id="launchlist-widget-script"
-          src="https://getlaunchlist.com/js/widget-diy.js"
-          strategy="afterInteractive"
-          defer
-        />
-      </head>
       <body className="font-sans">
         {children}
         <Analytics />

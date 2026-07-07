@@ -1,20 +1,12 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import PoplarMark from './components/PoplarMark';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-poplar-cream flex flex-col">
       <nav className="container mx-auto px-6 py-6">
         <Link href="/" className="flex items-center space-x-2 w-fit">
-          <Image
-            src="/images/logo-transparent.png"
-            alt="Poplar logo"
-            width={32}
-            height={32}
-            className="h-8 w-8"
-            style={{ objectFit: 'contain' }}
-            quality={100}
-          />
+          <PoplarMark className="h-8 w-8 text-poplar-text" />
           <span className="text-2xl font-display text-poplar-text">Poplar</span>
         </Link>
       </nav>

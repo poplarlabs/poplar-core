@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import StartForm from '../components/StartForm';
+import PoplarMark from '../components/PoplarMark';
 
 export const metadata: Metadata = {
   title: 'Poplar — Plant the first grove',
@@ -16,15 +16,7 @@ export default function Start() {
       <nav className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src="/images/logo-transparent.png"
-              alt="Poplar logo"
-              width={32}
-              height={32}
-              className="h-8 w-8"
-              style={{ objectFit: 'contain' }}
-              quality={100}
-            />
+            <PoplarMark className="h-8 w-8 text-poplar-text" />
             <span className="text-2xl font-display text-poplar-text">Poplar</span>
           </Link>
           <Link href="/" className="inline-flex items-center text-poplar-text hover:text-poplar-button transition-colors">
