@@ -1,67 +1,27 @@
-# Poplar Web Application
+# poplarlabs.xyz
 
-The main web application for Poplar, built with Next.js, React, and TypeScript.
+The public site for Poplar — groves: a hometown you choose. Next.js 14 (app router) + Tailwind, deployed on Vercel via the GitHub integration (push to master).
 
-## Prerequisites
+## Routes
 
-- Node.js (v18 or higher recommended)
-- Yarn package manager
-
-## Getting Started
-
-1. Install dependencies:
-   ```bash
-   yarn install
-   ```
-
-2. Run the development server:
-   ```bash
-   yarn dev
-   ```
-
-3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
-
-## Available Scripts
-
-- `yarn dev` - Runs the development server
-- `yarn build` - Creates a production build
-- `yarn start` - Runs the production server
-- `yarn lint` - Runs ESLint to check code quality
-
-## Project Structure
-
-- `app/` - Next.js application routes and components
-- `public/` - Static assets
-- `.next/` - Next.js build output
-- `node_modules/` - Project dependencies
-
-## Technology Stack
-
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **UI Library**: React 18
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Linting**: ESLint
-- **Package Manager**: Yarn
+- `/` — landing: the grove story, the path, and the CTAs
+- `/vision` — the reader-facing manifesto (an adaptation of `requirements/whitepaper.md`; internal strategy stays out — see the register note in `requirements/README.md`)
+- `/start` — intake for founding communities ("Plant the first grove")
+- `/x-kit` — hidden and noindexed: X profile assets and copy
+- `/litepaper` → permanent redirect to `/vision`
 
 ## Development
 
-The project uses:
-- TypeScript for type safety
-- ESLint for code quality
-- Tailwind CSS for styling
-- PostCSS for CSS processing
+```bash
+yarn install
+yarn dev        # http://localhost:3000
+yarn build      # production build (also what the pre-commit lint gate expects)
+```
 
-## Best Practices
+No global yarn on your machine? `npx yarn@1.22.22 <command>` works.
 
-- Follow the TypeScript type system
-- Use ESLint to maintain code quality
-- Follow the Next.js App Router conventions
-- Use Tailwind CSS for styling components
+## Notes
 
-## Contributing
-
-1. Create a new branch for your feature
-2. Make your changes
-3. Submit a pull request
+- Forms (`StartForm.tsx`, `FollowForm.tsx`) POST to FormSubmit and arrive by email; to change providers, swap the `ENDPOINT` constant.
+- Public copy register: member's-eye view, plain speech, no protocol/token vocabulary. When in doubt, read `/vision` and match it.
+- Brand: `PoplarMark.tsx` (nav/footer/favicons), `RootSystem.tsx` (the root-system drawing), Young Serif + Inter + IBM Plex Mono, soil/cream palette in `tailwind.config.js`.

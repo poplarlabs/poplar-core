@@ -16,13 +16,14 @@ Each layer pulls the one below it into existence. The full statement is in [GOAL
 | Path | What it is | Status |
 |---|---|---|
 | [GOALS.md](GOALS.md) | Mission and top-level goal (settled), plus draft goals | Current |
-| [requirements/plan-v2.md](requirements/plan-v2.md) | The plan: two converging tracks, phases, alternatives considered, kill risks | Current (draft) |
 | [requirements/whitepaper.md](requirements/whitepaper.md) | Whitepaper: manifesto and roadmap for groves | Current (draft) |
+| [requirements/plan-v2.md](requirements/plan-v2.md) | The plan: two converging tracks, phases, alternatives considered, kill risks | Current (draft) |
 | [requirements/archive/](requirements/archive/) | Superseded specs and early ideation | Historical |
-| `app/` | v1 prototype: Foundry contracts, FastAPI backend, React frontend (upfront-validation design on a local devnet) | Predates current plan |
-| `www/` | Marketing site and litepaper (Next.js) | Predates current plan |
-| `uma/` | UMA Optimistic Oracle V3 integration experiment — prior art for the optimistic-attestation direction | Experiment |
-| `bot/` | County records scraper experiments (titlebot) | Experiment |
+| `www/` | [poplarlabs.xyz](https://www.poplarlabs.xyz) — the public site | Live |
+| `uma/` | UMA Optimistic Oracle V3 integration experiment — prior art for the gateway's attestation rails | Experiment |
+| branch `v1-prototype` | The v1 prototype (contracts, backend, frontend for the superseded upfront-validation design) | Archived |
+
+Poplar builds in the open — this repo is public. The deliberate exceptions are Phase 0 execution instruments (negotiation gates, outreach lists with third-party contacts), which are kept out of the repository entirely.
 
 ## Community
 
