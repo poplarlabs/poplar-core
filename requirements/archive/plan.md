@@ -1,3 +1,5 @@
+> **Superseded (2026-07-06)** by [plan-v2.md](../plan-v2.md). The risks identified here carry forward in revised form: broad property records → the scrapeable-county / challenge-economics constraint (plan-v2 Phases 0–1); tokenomics trust → reflexivity guardrails, the balance-sheet split, and the security-by-design token; community education → the Phase 0 committed-capital demand test.
+
 # Risk Assessment & Testing Plan
 
 This document outlines the biggest risks identified and a minimal testing strategy to validate key assumptions without building the full system.

@@ -1,34 +1,30 @@
 # Poplar
 
-Poplar is a platform for founding and managing Network Towns - digital communities with their own local economies. Our mission is to enable the creation of self-sustaining digital communities that own their economy through decentralized governance and token-based microeconomies.
+Poplar is building a decentralized, economically-guaranteed property records protocol on Base, as the foundation for a longer-term vision of **groves** — real, land-based communities with shared governance and local economies. A grove is a hometown you choose. (Earlier drafts called these "network villages.")
 
-## What are Network Towns?
+## The bet
 
-Network Towns are digital communities that combine:
-- **Community DAOs**: Decentralized governance structures for local decision-making and resource allocation
-- **Local Economies**: Token-based microeconomies that support sustainable local development and commerce
-- **Digital Infrastructure**: Web3 tools and platforms for managing decentralized town resources and services
+1. **Demand** — People want to commune with others like them — even far-flung — and gain real economic control: community lending, shared ownership, a stake in what grows together.
+2. **Flywheel** — Community lending attracts members and finances land acquisition.
+3. **Backing** — Gathered land secures the community's token; real collateral gives it a floor.
+4. **Gateway** — Economically-guaranteed property records are the trust bridge that secures real-world land ownership on chain, so land can function as collateral and token backing.
 
-## Features
+Each layer pulls the one below it into existence. The full statement is in [GOALS.md](GOALS.md); the path is in [requirements/plan-v2.md](requirements/plan-v2.md).
 
-- Found your own town or join existing towns
-- Participate in decentralized governance
-- Engage in local economies through token-based commerce
-- Access web3 tools for community management
-- Connect with other towns for trade and collaboration
+## Repository map
 
-## Getting Started
-
-1. Visit our web application to explore existing towns
-2. Create your own town or join an existing one
-3. Participate in community governance and local economy
+| Path | What it is | Status |
+|---|---|---|
+| [GOALS.md](GOALS.md) | Mission and top-level goal (settled), plus draft goals | Current |
+| [requirements/plan-v2.md](requirements/plan-v2.md) | The plan: two converging tracks, phases, alternatives considered, kill risks | Current (draft) |
+| [requirements/whitepaper.md](requirements/whitepaper.md) | Whitepaper: manifesto and roadmap for groves | Current (draft) |
+| [requirements/archive/](requirements/archive/) | Superseded specs and early ideation | Historical |
+| `app/` | v1 prototype: Foundry contracts, FastAPI backend, React frontend (upfront-validation design on a local devnet) | Predates current plan |
+| `www/` | Marketing site and litepaper (Next.js) | Predates current plan |
+| `uma/` | UMA Optimistic Oracle V3 integration experiment — prior art for the optimistic-attestation direction | Experiment |
+| `bot/` | County records scraper experiments (titlebot) | Experiment |
 
 ## Community
 
 - Join our [Towns Chat](https://app.towns.com/poplar-labs)
 - Follow us on [Twitter](https://x.com/poplarlabsxyz)
-- Read our whitepaper to learn more about our vision
-
-## Technical Implementation
-
-The project is built with modern web technologies including Next.js, React, and TypeScript. For technical documentation and setup instructions, please refer to the `www/README.md` file in the web application directory.

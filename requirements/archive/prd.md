@@ -1,3 +1,5 @@
+> **Archived (2026-07-06): v1 prototype spec.** This PRD describes the MVP implemented in `app/` — upfront verifier voting and a day-one ROOT token. The current plan ([plan-v2.md](../plan-v2.md), [GOALS.md](../../GOALS.md)) replaces upfront validation with optimistic attestations, denominates in USDC before any token, and scopes guarantees to re-verifiable public-record facts. Kept as documentation of the prototype.
+
 # Poplar Product Requirement Document (PRD)
 
 ## Abstract
@@ -46,10 +48,16 @@ The MVP focuses on core functionalities:
 8. **Off-chain Storage Integration**
    - Utilizes IPFS for storing large documents (e.g., property deeds) with on-chain hash links.
 
+9. **Backend Database Module**
+   - Provides a database for efficient indexing of on-chain data and managing application state.
+   - Supports the Frontend dApp and Data Access Module by enabling faster queries and lookups.
+   - Does **not** replace smart contracts for core protocol actions like verification or dispute resolution.
+
 ## Technical Considerations
 - **Blockchain Platform:** Base (Ethereum L2 using optimistic rollups) for scalability and low fees.
 - **On-Chain Consensus:** Verification is performed solely by on-chain verifiers, eliminating external oracle dependencies.
 - **Security & Governance:** Token staking and economic incentives ensure data integrity and deter malicious activities.
+- **Backend Database:** A traditional database (e.g., PostgreSQL) will be used for indexing blockchain data and managing application state to enhance dApp performance, while core logic remains on-chain.
 
 ## Roadmap
 - **Phase 1:** Deploy smart contracts on Base testnet and pilot initial property record submissions.
@@ -57,4 +65,4 @@ The MVP focuses on core functionalities:
 - **Phase 3:** Enhance dispute resolution, user interface, and expand data access features.
 
 ## Conclusion
-This PRD outlines the essential modules and functionalities for Poplar's MVP. By focusing on on-chain verification and a robust token economy, Poplar aims to deliver a secure and transparent platform for decentralized property records. 
+This PRD outlines the essential modules and functionalities for Poplar's MVP. By focusing on on-chain verification and a robust token economy, Poplar aims to deliver a secure and transparent platform for decentralized property records.
