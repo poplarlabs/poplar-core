@@ -29,7 +29,7 @@ export default function LaunchListWidget({ variant = 'default' }: LaunchListWidg
           name="twitter" // Make sure this name matches LaunchList expected field if any
           type="text"
           disabled={isLoading} // Reuse loading state if form submission is handled via JS
-          placeholder="Twitter Handle"
+          placeholder="X handle (optional)"
           className={`w-full h-12 px-4 text-lg rounded-lg ${
             isCTA
               ? 'bg-white border-white text-poplar-text placeholder-poplar-placeholder border'
@@ -66,7 +66,7 @@ export default function LaunchListWidget({ variant = 'default' }: LaunchListWidg
             : 'bg-poplar-button text-white hover:bg-poplar-button/90'
         } disabled:opacity-50`}
       >
-        {isLoading ? 'Joining...' : 'Join Waitlist'}
+        {isLoading ? 'Joining...' : 'Follow along'}
       </button>
     </form>
   );

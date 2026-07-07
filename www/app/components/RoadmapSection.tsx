@@ -1,23 +1,32 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 const RoadmapSection = () => {
   const roadmapItems = [
     {
       icon: '/images/tree-icon.png',
-      alt: 'Tree Icon',
-      text: 'Build a decentralized protocol to validate land ownership and house details with the ROOT token',
+      alt: 'Tree icon',
+      label: 'Now',
+      title: 'Laying the ground',
+      body: 'Land and property records anyone can check and rely on — what lets far-flung members trust shared ground.',
     },
     {
       icon: '/images/home-icon.png',
-      alt: 'Home Icon',
-      text: 'Launch land-based Network Villages with community-owned economies',
+      alt: 'Home icon',
+      label: 'Next',
+      title: 'The first grove',
+      body: 'A real community charters it: a lending pool, and the first homes and businesses where it takes root.',
+      link: { href: '/start', text: 'This is where you come in' },
     },
     {
       icon: '/images/hand-icon.png',
-      alt: 'Hand holding home Icon',
-      text: 'Start community lending for home ownership in Network Villages',
+      alt: 'Hand holding home icon',
+      label: 'Then',
+      title: 'Roots and branches',
+      body: 'Common ground held in trust, member ownership with open books — and the next groves.',
     },
   ];
 
@@ -46,9 +55,10 @@ const RoadmapSection = () => {
   // --- End Updated SVG Calculations ---
 
   return (
-    <section id="roadmap" className="relative container mx-auto px-6 pt-16 overflow-hidden">
-      <h2 className="text-3xl font-bold text-center text-poplar-text mb-16">
-        Protocol Roadmap
+    <section id="path" className="relative container mx-auto px-6 pt-16 overflow-hidden">
+      <p className="font-mono text-xs md:text-sm tracking-[0.18em] uppercase text-poplar-moss mb-4 text-center">Where things stand</p>
+      <h2 className="font-display text-3xl md:text-4xl text-center text-poplar-text mb-16">
+        The path from here
       </h2>
 
       <div className="relative max-w-3xl mx-auto">
@@ -88,9 +98,23 @@ const RoadmapSection = () => {
 
             {/* Text Container - Padding ensures text clears icon + 1rem gap */}
             <div className={`w-full text-center ${index % 2 === 0 ? 'md:text-left md:pl-[calc(11rem+1rem)]' : 'md:text-right md:pr-[calc(11rem+1rem)]'}`}>
-              <p className="text-xl font-semibold text-poplar-text leading-relaxed">
-                {item.text}
+              <p className="font-mono text-xs md:text-sm tracking-[0.18em] uppercase text-poplar-button mb-2">
+                {item.label}
               </p>
+              <h3 className="text-xl md:text-2xl font-semibold text-poplar-text mb-2">
+                {item.title}
+              </h3>
+              <p className="text-lg text-poplar-text/80 leading-relaxed">
+                {item.body}
+              </p>
+              {item.link && (
+                <Link
+                  href={item.link.href}
+                  className="inline-flex items-center mt-3 text-poplar-button font-medium hover:underline"
+                >
+                  {item.link.text} <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+                </Link>
+              )}
             </div>
           </div>
         ))}

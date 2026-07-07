@@ -8,6 +8,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/litepaper',
+        destination: '/vision',
+        permanent: true,
+      },
+    ];
+  },
 }
 
-export default nextConfig; 
+export default nextConfig;

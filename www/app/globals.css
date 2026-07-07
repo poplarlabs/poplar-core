@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #C15A36;
+  color: #F7F3EB;
+}
+
+:focus-visible {
+  outline: 2px solid #C15A36;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Root-system drawing: strokes draw in when the section scrolls into view. */
+.root-system path,
+.root-system line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.root-system.in-view path,
+.root-system.in-view line {
+  animation: draw-root 2.4s ease-out forwards;
+}
+
+.root-system.in-view .root-trunk {
+  animation-delay: 0.2s;
+  animation-duration: 1.2s;
+}
+
+@keyframes draw-root {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .root-system path,
+  .root-system line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+}
